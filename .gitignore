@@ -1,0 +1,13 @@
+Ignore Data Files (Best practice is to not upload large datasets)
+
+*.csv
+*.xlsx
+*.xls
+
+Ignore Python Cache and Virtual Envs
+
+pycache/
+*.pyc
+venv/
+.env
+.DS_Store
