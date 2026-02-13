@@ -8,14 +8,14 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 # --- FUNCTION DEFINITIONS (Requirement A1, A2, A3, A4, A7) ---
 
 def evaluate_classification_metrics(y_true, y_pred):
-    """A1: Evaluates confusion matrix and performance metrics[cite: 19]."""
+    """A1: Evaluates confusion matrix and performance metrics."""
     cm = confusion_matrix(y_true, y_pred)
     # Using classification_report for precision, recall, and F1-score
     report = classification_report(y_true, y_pred, output_dict=True)
     return cm, report
 
 def calculate_regression_metrics(y_true, y_pred):
-    """A2: Calculates MSE, RMSE, MAPE, and R2[cite: 21]."""
+    """A2: Calculates MSE, RMSE, MAPE, and R2."""
     mse = mean_squared_error(y_true, y_pred)
     rmse = np.sqrt(mse)
     # MAPE calculation
@@ -24,14 +24,14 @@ def calculate_regression_metrics(y_true, y_pred):
     return mse, rmse, mape, r2
 
 def generate_synthetic_data(n_points=20):
-    """A3: Generates 20 random data points for two features[cite: 22]."""
+    """A3: Generates 20 random data points for two features."""
     X = np.random.uniform(1, 10, (n_points, 2))
-    # Assign classes: class 0 if X+Y < 11, else class 1 [cite: 22]
+    # Assign classes: class 0 if X+Y < 11, else class 1 
     y = np.where(X[:, 0] + X[:, 1] < 11, 0, 1)
     return X, y
 
 def generate_test_grid():
-    """A4: Generates a dense grid of test points between 0 and 10[cite: 24, 25]."""
+    """A4: Generates a dense grid of test points between 0 and 10."""
     x_range = np.arange(0, 10.1, 0.1)
     y_range = np.arange(0, 10.1, 0.1)
     xx, yy = np.meshgrid(x_range, y_range)
@@ -39,7 +39,7 @@ def generate_test_grid():
     return X_test, xx, yy
 
 def find_best_k(X, y):
-    """A7: Uses GridSearchCV to find the ideal k value[cite: 30]."""
+    """A7: Uses GridSearchCV to find the ideal k value."""
     parameters = {'n_neighbors': range(1, 21)}
     knn = KNeighborsClassifier()
     clf = GridSearchCV(knn, parameters, cv=5)
@@ -50,7 +50,7 @@ def find_best_k(X, y):
 
 # Load project data (Marketing Campaign)
 df = pd.read_csv("Lab Session Data.xlsx - marketing_campaign.csv").dropna()
-features = ['MntWines', 'MntMeatProducts'] # Using 2 features for visualization [cite: 29]
+features = ['MntWines', 'MntMeatProducts'] # Using 2 features for visualization 
 X_proj = df[features].values
 y_proj = df['Response'].values
 X_train, X_test, y_train, y_test = train_test_split(X_proj, y_proj, test_size=0.3, random_state=42)
